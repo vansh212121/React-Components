@@ -1,13 +1,16 @@
 import React from "react";
-import { AnimatedButton } from "./components/ui/AnimatedButton";
+import Navbar from "./components/Navbar";
+import TestimonialsSection from "./components/Testimonials";
 
 const App = () => {
   return (
-    <div>
-      <AnimatedButton size="lg" className="group">
-        Get Started
-      </AnimatedButton>
-      {/* <TestimonialsSection/> */}
+    <div className="bg-green-700 ">
+      <Navbar />
+      <TestimonialsSection />
+      <TestimonialsSection />
+      <TestimonialsSection />
+      <TestimonialsSection />
+      <TestimonialsSection />
     </div>
   );
 };
