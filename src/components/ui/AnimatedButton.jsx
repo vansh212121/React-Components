@@ -1,12 +1,10 @@
-"use client";
-
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -22,9 +20,9 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-5",
-        sm: "h-8 px-3 text-xs",
-        lg: "h-12 px-8 text-base",
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
       },
     },
@@ -42,15 +40,20 @@ const AnimatedButton = React.forwardRef(
     return (
       <Comp
         ref={ref}
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          "group relative overflow-hidden",
+          buttonVariants({ variant, size, className })
+        )}
         {...props}
       >
-        {/* Animated Text Wrapper */}
-        <span className="relative inline-block overflow-hidden leading-tight h-[1.2em] align-middle">
-          <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+        {/* ✅ Animate both text and icons together */}
+        <span className="relative flex items-center justify-center gap-2 overflow-hidden">
+          {/* Default state */}
+          <span className="flex items-center gap-2 transition-transform duration-300 ease-out group-hover:-translate-y-full">
             {children}
           </span>
-          <span className="absolute top-full left-0 w-full block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+          {/* Hover state (slides up) */}
+          <span className="absolute top-full left-0 w-full flex items-center justify-center gap-2 transition-transform duration-300 ease-out group-hover:-translate-y-full">
             {children}
           </span>
         </span>
@@ -58,6 +61,7 @@ const AnimatedButton = React.forwardRef(
     );
   }
 );
+
 AnimatedButton.displayName = "AnimatedButton";
 
 export { AnimatedButton, buttonVariants };
