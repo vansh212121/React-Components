@@ -1,15 +1,15 @@
 import React from "react";
 import PricingSection from "./components/Pricing";
 import { SlideTabsExample } from "./components/Navbar2";
-// import UnblurTextReveal from "./components/UnblurTestReveal";
-import ScrollUnblurText from "./components/UnblurTestReveal";
+// import ScrollUnblurText from "./components/UnblurTestReveal";
+import HoverPopupCard from "./components/HoverPopCard";
 
 const App = () => {
   return (
     <div className="bg-sky-200 ">
       <SlideTabsExample />
       <PricingSection />
-      <ScrollUnblurText
+      {/* <ScrollUnblurText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         colorFrom="#888888"
         colorTo="#000000"
@@ -20,8 +20,12 @@ const App = () => {
         stagger={0.08} // 👈 Slower = more dramatic
         scrub={1.5}
         className="text-6xl font-bold"
+      />   */}
+      <HoverPopupCard
+        bg="/bg.png"
+        popup="/goku.png"
+        logo="/logo.png"
       />
-
 
       <PricingSection />
     </div>
