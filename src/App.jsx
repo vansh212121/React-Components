@@ -1,13 +1,9 @@
 import React from "react";
-// import PricingSection from "./components/Pricing";
-import { SlideTabsExample } from "./components/Navbar2";
-import SpotlightText from "./components/SpotlightText";
-import GlowTrailsText from "./components/GlowTrailText";
-import MagneticText from "./components/MagneticText";
-import MagneticGlowText from "./components/MagneticGlowText";
-// import CursorMaskReveal from "./components/CursorMaskReveal";
-// import ScrollUnblurText from "./components/UnblurTestReveal";
-// import HoverPopupCard from "./components/HoverPopCard";
+import { SlideTabsExample } from "./components/Navbar/Navbar2";
+import SpotlightText from "./components/Text/SpotlightText";
+import MagneticText from "./components/Text/MagneticText";
+import MagneticGlowText from "./components/Text/MagneticGlowText";
+import CanvasGlowTrailsText from "./components/Text/GlowTrailText";
 
 const App = () => {
   return (
@@ -43,7 +39,7 @@ const App = () => {
         width={1000}
         height={520}
       /> */}
-
+      {/* 
       <SpotlightText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         colorBase="#d0d0d0"
@@ -51,18 +47,16 @@ const App = () => {
         spotlightSize={180}
         spotlightSoftness={90}
         fontSize="text-5xl md:text-8xl lg:text-6xl font-bold"
-      />
+      /> */}
 
-      <GlowTrailsText
+      {/* <CanvasGlowTrailsText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         glowColor="#ec4899"
         trailLength={12}
         spotlightSize={200}
         blurAmount={30}
-      />
-
-      <br />
-
+      /> */}
+      {/* 
       <MagneticText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         magneticStrength={0.5}
@@ -70,15 +64,87 @@ const App = () => {
         splitBy="chars"
         revealOnProximity={true}
         colorReveal="#3b82f6"
-      />
-      <br />
+      /> */}
 
-      <MagneticGlowText
+      {/* <MagneticGlowText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         glowColor="#8b5cf6"
         magneticStrength={0.3}
         spotlightSize={220}
-      />
+      /> */}
+
+      {/* BENTO */}
+      {/* <BentoGallery
+        images={[
+          { src: "/Bento1.png", spanRows: 2 },
+          { src: "/Bento2.png" },
+          { src: "/Bento4.png" },
+          { src: "/Bento5.png", spanCols: 2 },
+          { src: "/Bento3.png" },
+          { src: "/Bento6.png" },
+        ]}
+      /> */}
+      {/* 
+      <BentoAsymmetric
+        images={[
+          { src: "/Bento1.png", spanRows: 2 },
+          { src: "/Bento2.png" },
+          { src: "/Bento4.png" },
+          { src: "/Bento5.png", spanCols: 2 },
+          { src: "/Bento6.png" },
+        ]}
+      /> */}
+
+      {/* <BentoCenterFocus
+        images={[
+          { src: "/Bento1.png", spanRows: 2 },
+          { src: "/Bento2.png" },
+          { src: "/Bento4.png" },
+          { src: "/Bento1.png", spanCols: 2 },
+          { src: "/Bento5.png" },
+          { src: "/Bento2.png" },
+          { src: "/Bento5.png" },
+          { src: "/Bento3.png" },
+          { src: "/Bento6.png" },
+        ]}
+      /> */}
+
+      {/*       
+      <BentoLShape
+        images={[
+          { src: "/Bento1.png" },
+          { src: "/Bento1.png" },
+          { src: "/Bento2.png" },
+          { src: "/Bento4.png" },
+          { src: "/Bento5.png" },
+          { src: "/Bento6.png" },
+        ]}
+      /> */}
+
+      {/* <BentoZigzag
+        images={[
+          { src: "/Bento1.png" },
+          { src: "/Bento1.png" },
+          { src: "/Bento2.png" },
+          { src: "/Bento4.png" },
+          { src: "/Bento5.png" },
+          { src: "/Bento3.png" },
+          { src: "/Bento3.png" },
+          { src: "/Bento4.png" },
+        ]}
+      /> */}
+
+      {/* <BentoMagazine
+        images={[
+          { src: "/Bento1.png" },
+          { src: "/Bento1.png" },
+          { src: "/Bento2.png" },
+          { src: "/Bento4.png" },
+          { src: "/Bento4.png" },
+          { src: "/Bento5.png" },
+          { src: "/Bento6.png" },
+        ]}
+      /> */}
     </div>
   );
 };
