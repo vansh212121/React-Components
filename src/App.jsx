@@ -4,6 +4,10 @@ import SpotlightText from "./components/Text/SpotlightText";
 import MagneticText from "./components/Text/MagneticText";
 import MagneticGlowText from "./components/Text/MagneticGlowText";
 import CanvasGlowTrailsText from "./components/Text/GlowTrailText";
+import ModernFAQSection from "./components/FAQ/FAQ";
+import FAQ from "./components/FAQ/FAQ";
+import SaaSFAQWithSidebar from "./components/FAQ/SaaSFAQWithSidebar";
+import PremiumSaaSFAQ from "./components/FAQ/PerfectFAQ";
 
 const App = () => {
   return (
@@ -145,6 +149,10 @@ const App = () => {
           { src: "/Bento6.png" },
         ]}
       /> */}
+
+      <FAQ />
+      <SaaSFAQWithSidebar />
+      <PremiumSaaSFAQ />
     </div>
   );
 };
