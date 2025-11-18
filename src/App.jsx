@@ -1,20 +1,12 @@
 import React from "react";
 import { SlideTabsExample } from "./components/Navbar/Navbar2";
-import SpotlightText from "./components/Text/SpotlightText";
-import MagneticText from "./components/Text/MagneticText";
-import MagneticGlowText from "./components/Text/MagneticGlowText";
-import CanvasGlowTrailsText from "./components/Text/GlowTrailText";
-import ModernFAQSection from "./components/FAQ/FAQ";
-import FAQ from "./components/FAQ/FAQ";
-import SaaSFAQWithSidebar from "./components/FAQ/SaaSFAQWithSidebar";
-import PremiumSaaSFAQ from "./components/FAQ/PerfectFAQ";
+
 
 const App = () => {
   return (
     <div className="bg-sky-200 space-y-6 ">
       <SlideTabsExample />
       {/* <PricingSection /> */}
-
       {/* <ScrollUnblurText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         colorFrom="#888888"
@@ -27,13 +19,11 @@ const App = () => {
         scrub={1.5}
         className="text-6xl font-bold"
       />   */}
-
       {/* <HoverPopupCard
         bg="/bg.png"
         popup="/goku.png"
         logo="/logo.png"
       /> */}
-
       {/* <CursorMaskReveal
         fgImage="/white.png"
         bgImage="/colour.png"
@@ -52,7 +42,6 @@ const App = () => {
         spotlightSoftness={90}
         fontSize="text-5xl md:text-8xl lg:text-6xl font-bold"
       /> */}
-
       {/* <CanvasGlowTrailsText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         glowColor="#ec4899"
@@ -69,14 +58,12 @@ const App = () => {
         revealOnProximity={true}
         colorReveal="#3b82f6"
       /> */}
-
       {/* <MagneticGlowText
         text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti perferendis culpa facere laboriosam veniam provident ut eveniet recusandae! Eaque quis velit necessitatibus ex alias voluptatem sint corporis odit maxime modi amet iusto nihil vel nam pariatur doloribus ab eveniet saepe, quibusdam facilis neque ullam? Aut ducimus tempore sit maxime quos."
         glowColor="#8b5cf6"
         magneticStrength={0.3}
         spotlightSize={220}
       /> */}
-
       {/* BENTO */}
       {/* <BentoGallery
         images={[
@@ -98,7 +85,6 @@ const App = () => {
           { src: "/Bento6.png" },
         ]}
       /> */}
-
       {/* <BentoCenterFocus
         images={[
           { src: "/Bento1.png", spanRows: 2 },
@@ -112,7 +98,6 @@ const App = () => {
           { src: "/Bento6.png" },
         ]}
       /> */}
-
       {/*       
       <BentoLShape
         images={[
@@ -124,7 +109,6 @@ const App = () => {
           { src: "/Bento6.png" },
         ]}
       /> */}
-
       {/* <BentoZigzag
         images={[
           { src: "/Bento1.png" },
@@ -137,7 +121,6 @@ const App = () => {
           { src: "/Bento4.png" },
         ]}
       /> */}
-
       {/* <BentoMagazine
         images={[
           { src: "/Bento1.png" },
@@ -149,10 +132,21 @@ const App = () => {
           { src: "/Bento6.png" },
         ]}
       /> */}
+      {/* <FAQ />
+      <SaaSFAQWithSidebar /> */}
+      {/* <PremiumSaaSFAQ /> */}
+      {/* Ticker */}
+      {/* <SmoothWaveTicker /> */}
+      {/* <SShapedTicker speed={40} primaryAmplitude={50} secondaryAmplitude={25} /> */}
 
-      <FAQ />
-      <SaaSFAQWithSidebar />
-      <PremiumSaaSFAQ />
+      {/* <ComplexWaveTicker
+        items={[
+          { src: "/img1.jpg", title: "Product 1" },
+          { src: "/img2.jpg", title: "Product 2" },
+        ]}
+      /> */}
+
+      {/* <SpiralWaveTicker /> */}
     </div>
   );
 };

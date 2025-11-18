@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function PremiumSaaSFAQ() {
   const [open, setOpen] = useState(0);
@@ -25,14 +26,34 @@ export default function PremiumSaaSFAQ() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <section className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
-      {/* Subtle background elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
       <div className="relative max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 shadow-sm mb-6">
             <svg
               className="w-4 h-4 text-gray-600"
@@ -57,16 +78,23 @@ export default function PremiumSaaSFAQ() {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Everything you need to know about the product and billing.
           </p>
-        </div>
+        </motion.div>
 
         {/* FAQ List */}
-        <div className="space-y-3">
+        <motion.div
+          className="space-y-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {faqs.map((item, i) => {
             const isOpen = open === i;
 
             return (
-              <div
+              <motion.div
                 key={i}
+                variants={itemVariants}
                 className={`bg-white border rounded-2xl transition-all duration-300 ${
                   isOpen
                     ? "border-gray-300 shadow-lg shadow-gray-200/50"
@@ -113,13 +141,19 @@ export default function PremiumSaaSFAQ() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="mt-16 text-center p-8 bg-white rounded-2xl border border-gray-200">
+        <motion.div
+          className="mt-16 text-center p-8 bg-white rounded-2xl border border-gray-200"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
           <h3 className="font-semibold text-gray-900 mb-2">
             Still have questions?
           </h3>
@@ -143,7 +177,7 @@ export default function PremiumSaaSFAQ() {
               />
             </svg>
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
