@@ -3,6 +3,7 @@ import { SlideTabsExample } from "./components/Navbar/Navbar2";
 import ScatterTrail from "./components/ImagePath/MultiImageTrail";
 import MultiImageTrail from "./components/ImagePath/MultiImageTrail";
 import ImagePathTrail from "./components/ImagePath/ImagePathEffect";
+import HoverPopupCard from "./components/HoverPopCard";
 
 const App = () => {
   return (
@@ -21,11 +22,15 @@ const App = () => {
         scrub={1.5}
         className="text-6xl font-bold"
       />   */}
-      {/* <HoverPopupCard
+
+
+      <HoverPopupCard
         bg="/bg.png"
         popup="/goku.png"
         logo="/logo.png"
-      /> */}
+      />
+
+
       {/* <CursorMaskReveal
         fgImage="/white.png"
         bgImage="/colour.png"

@@ -3,233 +3,212 @@
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 
-export default function HoverPopupCard({
-  width = 360,
-  height = 520,
-  bg = "/placeholder-bg.jpg",
-  popup = "/placeholder-popup.png",
-  logo = "/placeholder-logo.png",
-  shrink = 0.82,
-  popupLift = 100,
-  popupScale = 1.25,
-  logoLift = 30,
-  logoScale = 1.68,
+export default function EnhancedHoverCard({
+  width = 320,
+  height = 460,
+  bg = "https://images.unsplash.com/photo-1535868463750-c78d9543614f?q=80&w=1000&auto=format&fit=crop",
+  popup = "https://png.pngtree.com/png-vector/20240601/ourmid/pngtree-cyborg-girl-cyberpunk-character-png-image_12593143.png",
+  logo = "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
 }) {
   const containerRef = useRef(null);
   const cardRef = useRef(null);
-  const cardBgRef = useRef(null);
-  const popupRef = useRef(null);
+  const bgImageRef = useRef(null);
+  const charRef = useRef(null);
   const logoRef = useRef(null);
-  const shadowRef = useRef(null);
-  const overlayRef = useRef(null);
-  const bgRef = useRef(null);
+  const sheenRef = useRef(null);
+  const flashRef = useRef(null);
 
   useLayoutEffect(() => {
-    const context = gsap.context(() => {
-      const container = containerRef.current;
-      const card = cardRef.current;
-      const cardBg = cardBgRef.current;
-      const popupImg = popupRef.current;
-      const logoImg = logoRef.current;
-      const shadow = shadowRef.current;
-      const overlay = overlayRef.current;
-      const bgImg = bgRef.current;
-
-      const originalHeight = height;
-      const shrinkHeight = height * shrink;
-
-      // Initial states with GPU acceleration
-      gsap.set(popupImg, {
-        opacity: 0,
-        scale: 0.55,
-        y: 0,
-        transformOrigin: "center bottom",
-        force3D: true, // ⚡ GPU optimization
-      });
-
-      gsap.set(logoImg, {
-        y: 0,
-        scale: 1,
-        transformOrigin: "center",
-        force3D: true, // ⚡ GPU optimization
-      });
-
-      // Set GPU optimization on all animated elements
-      gsap.set([shadow, container, card, cardBg, overlay, bgImg], {
-        force3D: true,
-      });
-
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         paused: true,
-        defaults: { ease: "power3.out" },
+        defaults: { ease: "power3.inOut" },
       });
 
-      // Smooth shrink - EXACT ORIGINAL
+      // --- SETUP ---
+
+      // 1. Character setup
+      gsap.set(charRef.current, {
+        y: 20,
+        scale: 0.85,
+        opacity: 0,
+        filter: "blur(5px)",
+        transformOrigin: "center bottom",
+      });
+
+      // 2. Logo setup
+      gsap.set(logoRef.current, {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        transformOrigin: "center center",
+        filter: "drop-shadow(0 5px 10px rgba(0,0,0,0.5))",
+      });
+
+      // 3. Sheen & Flash setup
+      gsap.set(sheenRef.current, { xPercent: -200 });
+      gsap.set(flashRef.current, { opacity: 0 });
+
+      // --- TIMELINE ---
+
+      // 1. Shrink Card Base
       tl.to(
-        [shadow, container, card, cardBg],
+        cardRef.current,
         {
-          height: shrinkHeight,
-          duration: 0.35,
-          boxShadow:
-            "0 40px 100px rgba(0,0,0,0.35), 0 25px 50px rgba(0,0,0,0.22)",
-          ease: "power2.out",
-          force3D: true, // ⚡ GPU optimization
+          height: height * 0.72,
+          duration: 0.4,
+          ease: "power3.inOut",
+          boxShadow: "0px 40px 60px -15px rgba(0,0,0,0.5)",
         },
         0
       );
 
-      // Popup forward – EXACT ORIGINAL with optimization
-      tl.fromTo(
-        popupImg,
+      // 2. Scale BG Image (Counter-zoom)
+      tl.to(
+        bgImageRef.current,
         {
-          opacity: 0,
-          scale: 0.55,
-          y: 0,
-          filter: "blur(10px)",
+          scale: 1.1,
+          y: 10,
+          duration: 0.4,
         },
+        0
+      );
+
+      // 3. Pop Character UP
+      tl.to(
+        charRef.current,
         {
+          y: -70,
+          scale: 1.2,
           opacity: 1,
-          scale: popupScale,
-          y: 0,
           filter: "blur(0px)",
-          duration: 0.45,
-          ease: "power3.out",
-          force3D: true, // ⚡ GPU optimization
+          duration: 0.5,
+          ease: "back.out(1.5)",
         },
-        0.06
+        0.1
       );
 
-      // Logo lift - EXACT ORIGINAL
+      // 4. Pop Logo FORWARD (Scale vs Lift)
+      // Instead of moving UP, we Scale HUGE to create "Pop Out" 3D effect
       tl.to(
-        logoImg,
+        logoRef.current,
         {
-          y: -logoLift * 0.6,
-          scale: logoScale,
-          duration: 0.35,
+          y: -25, // Minimal lift, just enough to detach
+          scale: 1.65, // <--- HUGE SCALE (Overflows width)
+          filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.7))",
+          duration: 0.5,
+          ease: "back.out(1.5)",
+        },
+        0.05
+      );
+
+      // 5. Sheen Sweep
+      tl.fromTo(
+        sheenRef.current,
+        { xPercent: -200, opacity: 0 },
+        { xPercent: 200, opacity: 0.3, duration: 0.7, ease: "power2.out" },
+        0.1
+      );
+
+      // 6. Impact Flash
+      tl.fromTo(
+        flashRef.current,
+        { opacity: 0.5 },
+        { opacity: 0, duration: 0.25 },
+        0.1
+      );
+
+      // --- INTERACTION HANDLERS ---
+      const container = containerRef.current;
+
+      const onEnter = () => tl.play();
+      const onLeave = () => {
+        tl.reverse();
+        gsap.to(container, { rotationX: 0, rotationY: 0, duration: 0.5 });
+      };
+
+      const onMove = (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const xPct = x / rect.width - 0.5;
+        const yPct = y / rect.height - 0.5;
+
+        gsap.to(container, {
+          rotationY: xPct * 15,
+          rotationX: -yPct * 15,
+          duration: 0.5,
           ease: "power2.out",
-          force3D: true, // ⚡ GPU optimization
-        },
-        0
-      );
-
-      // Overlay fade - EXACT ORIGINAL
-      tl.to(
-        overlay,
-        {
-          opacity: 0.45,
-          duration: 0.35,
-          force3D: true, // ⚡ GPU optimization
-        },
-        0
-      );
-
-      // BG scale - EXACT ORIGINAL
-      tl.to(
-        bgImg,
-        {
-          scale: 1.08,
-          duration: 0.35,
-          force3D: true, // ⚡ GPU optimization
-        },
-        0
-      );
-
-      // --- HOVER EVENTS (optimized handlers) ---
-      const handleMouseEnter = () => {
-        tl.timeScale(1).play();
+        });
       };
 
-      const handleMouseLeave = () => {
-        tl.timeScale(1.2).reverse();
-      };
+      container.addEventListener("mouseenter", onEnter);
+      container.addEventListener("mouseleave", onLeave);
+      container.addEventListener("mousemove", onMove);
 
-      container.addEventListener("mouseenter", handleMouseEnter);
-      container.addEventListener("mouseleave", handleMouseLeave);
+      return () => {
+        container.removeEventListener("mouseenter", onEnter);
+        container.removeEventListener("mouseleave", onLeave);
+        container.removeEventListener("mousemove", onMove);
+      };
     }, containerRef);
 
-    return () => context.revert();
-  }, [height, shrink, popupLift, popupScale, logoLift, logoScale]);
+    return () => ctx.revert();
+  }, [height]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen bg-neutral-950">
       <div
-        ref={shadowRef}
-        className="rounded-3xl"
-        style={{
-          width,
-          height,
-          boxShadow:
-            "0px 20px 60px rgba(0,0,0,0.15), 0px 10px 25px rgba(0,0,0,0.1)",
-          willChange: "height, box-shadow",
-        }}
+        ref={containerRef}
+        className="relative cursor-pointer group perspective-1000"
+        style={{ width, height, perspective: "1000px" }}
       >
+        {/* LAYER 1: Shrinking Card Base */}
         <div
-          ref={containerRef}
-          className="relative rounded-3xl cursor-pointer w-full h-full flex justify-center items-end"
+          ref={cardRef}
+          className="absolute bottom-0 left-0 w-full rounded-3xl overflow-hidden bg-gray-900 shadow-2xl will-change-transform"
           style={{
-            willChange: "height",
+            height: "100%",
+            transformStyle: "preserve-3d",
           }}
         >
+          <img
+            ref={bgImageRef}
+            src={bg}
+            alt="Background"
+            className="absolute inset-0 w-full h-full object-cover will-change-transform"
+          />
+
           <div
-            ref={cardRef}
-            className="relative rounded-3xl w-full h-full flex items-end justify-center"
-            style={{
-              willChange: "height",
-            }}
-          >
-            {/* LAYER 1: The Clipped Card Background */}
-            <div
-              ref={cardBgRef}
-              className="absolute bottom-0 overflow-hidden bg-black w-full h-full rounded-3xl"
-              style={{
-                zIndex: 10,
-                willChange: "height",
-              }}
-            >
-              <div className="absolute inset-0">
-                <img
-                  ref={bgRef}
-                  src={bg}
-                  alt="background"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  style={{ transformOrigin: "center" }}
-                />
-              </div>
+            ref={sheenRef}
+            className="absolute inset-0  -skew-x-12 z-20"
+            style={{ width: "150%" }}
+          />
 
-              <div
-                ref={overlayRef}
-                className="absolute inset-0 bg-black opacity-0"
-                style={{ zIndex: 5 }}
-              />
+          <div
+            ref={flashRef}
+            className="absolute inset-0 bg-white z-30 pointer-events-none"
+          />
+        </div>
 
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"
-                style={{ zIndex: 6 }}
-              />
-            </div>
+        {/* LAYER 2: Floating Elements (Character & Logo) */}
+        <div className="absolute bottom-0 left-0 w-full h-full flex items-end justify-center pointer-events-none">
+          {/* Character - Sits Middle Depth */}
+          <img
+            ref={charRef}
+            src={popup}
+            alt="Character"
+            className="relative z-40 w-[90%] object-contain will-change-transform"
+            style={{ bottom: 0 }}
+          />
+
+          {/* Logo - Sits Max Depth (Closest to Camera) */}
+          <div className="absolute bottom-10 z-50 w-full flex justify-center">
             <img
               ref={logoRef}
               src={logo}
-              alt="logo"
-              className="absolute left-1/2 -translate-x-1/2 w-[80%] object-contain pointer-events-none"
-              style={{
-                bottom: "40px",
-                zIndex: 20,
-                filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.5))",
-              }}
-            />
-
-            {/* LAYER 2: The Pop-Out Image */}
-            <img
-              ref={popupRef}
-              src={popup}
-              alt="popup"
-              className="absolute bottom-[22%] left-1/2 -translate-x-1/2 w-[85%] object-contain pointer-events-none"
-              style={{
-                zIndex: 50,
-                filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.5))",
-                marginBottom: "-15px",
-              }}
+              alt="Logo"
+              className="w-[65%] object-contain will-change-transform"
             />
           </div>
         </div>
@@ -237,5 +216,3 @@ export default function HoverPopupCard({
     </div>
   );
 }
-
-
