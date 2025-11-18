@@ -1,6 +1,8 @@
 import React from "react";
 import { SlideTabsExample } from "./components/Navbar/Navbar2";
-
+import ScatterTrail from "./components/ImagePath/MultiImageTrail";
+import MultiImageTrail from "./components/ImagePath/MultiImageTrail";
+import ImagePathTrail from "./components/ImagePath/ImagePathEffect";
 
 const App = () => {
   return (
@@ -147,6 +149,30 @@ const App = () => {
       /> */}
 
       {/* <SpiralWaveTicker /> */}
+
+      <div className="px-12 py-12">
+        {/* <ImagePathTrail
+          images={[
+            "/img1.png",
+            "/img2.png",
+            "/img3.png",
+            "/img4.png",
+            "/img5.png",
+            "/img6.png",
+          ]}
+          width={180}
+          height={220}
+        /> */}
+
+        {/* <MultiImageTrail /> */}
+        {/* <ScatterTrail /> */}
+
+        {/* <MagneticImageFollow /> */}
+
+        {/* <ScatterBurstImages /> */}
+
+        {/* <CleanImageTrail /> */}
+      </div>
     </div>
   );
 };
